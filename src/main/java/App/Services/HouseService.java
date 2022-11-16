@@ -1,5 +1,6 @@
 package App.Services;
 
+import App.Models.Furniture;
 import App.Models.House;
 import App.Repositories.HouseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +39,17 @@ public class HouseService {
         return hr.getReferenceById(id);
     }
     /**
-     * Gets max furniture size by its id
+     * Gets max furniture size left by its id
      * @param id house id
-     * @return max furniture space
+     * @return max furniture space left
      */
     public int maxSizeForHouse(int id){
-        return hr.getReferenceById(id).getHouseId()/2;
+      int max=hr.getReferenceById(id).getSquareFeet()/2;
+      List<Furniture> fList=hr.getReferenceById(id).getFurnitureList();
+      for(int i=0; i<fList.size();i++){
+          max-= fList.get(i).getSquareFeet();
+      }
+      return max;
     }
 
     /**
