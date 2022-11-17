@@ -31,10 +31,9 @@ public class HouseController {
         return hs.getHouseById(id);
    }
 
-
-
-
-
-
+   @GetMapping("house/max/{id}")
+    public int maxSqFootage(@PathVariable("id") int id){
+        return hs.maxSizeForHouse(id);
+   }
 
 }
