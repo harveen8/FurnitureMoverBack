@@ -36,10 +36,11 @@ public class FurnitureService {
      * @return number of occurrences
      */
     public int FurnitireTypeNumber(String name){
+        String changeName= hs.camelCase(name);
         int occurrences=0;
         List<Furniture> AllFurniture= fr.findAll();
         for(int i=0; i< AllFurniture.size(); i++){
-            if(AllFurniture.get(i).getName().equals(name)) {
+            if(AllFurniture.get(i).getName().equals(changeName)) {
                 occurrences++;
             }
         }
